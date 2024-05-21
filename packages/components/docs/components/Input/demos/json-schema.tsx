@@ -43,7 +43,7 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input.TextArea',
       'x-component-props': {
-        placeholder: '请输入',
+        placeholder: '请输入地址',
         maxLength: 1000,
         showCount: true,
         autoSize: true,

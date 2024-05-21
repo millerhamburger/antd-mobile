@@ -1,17 +1,27 @@
+/*
+ * @Author: YEYI 361936738@qq.com
+ * @Date: 2024-05-21 18:59:51
+ * @LastEditors: YEYI 361936738@qq.com
+ * @LastEditTime: 2024-05-21 20:01:13
+ * @FilePath: /antd-mobile/packages/components/docs/components/Checkbox/demos/json-schema.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React from 'react'
 // @ts-ignore
-import { Selector, FormLayout, FormItem, FormButtonGroup, Submit } from '@formily/antd-mobile'
-import { Dialog, Slider } from 'antd-mobile'
+import {
+  FormItem,
+  FormButtonGroup,
+  Submit,
+  Checkbox,
+} from '@formily/antd-mobile'
+import { Dialog } from 'antd-mobile'
 import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField, } from '@formily/react'
-
+import { FormProvider, createSchemaField } from '@formily/react'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
-    FormLayout,
-    Selector,
-    Slider
+    Checkbox,
   },
 })
 
@@ -23,7 +33,6 @@ const ItemList = [
   {
     label: '选项二',
     value: '2',
-    disabled: true,
   },
   {
     label: '选项三',
@@ -39,67 +48,34 @@ const form = createForm()
 const schema = {
   type: 'object',
   properties: {
-    layout: {
-      type: 'void',
-      'x-component': 'FormLayout',
+    name: {
+      type: 'Array<string | number>',
+      title: '复选框',
+      enum: ItemList,
+      'x-decorator': 'FormItem',
+      'x-component': 'Checkbox.Group',
+      'x-decorator-props': {
+        feedbackLayout: 'popover',
+        tooltip: '额外提示',
+      },
       'x-component-props': {
-        layout: 'vertical'
+        placeholder: '请选择',
       },
-      properties: {
-        name: {
-          type: 'items',
-          title: '单选',
-          enum: ItemList,
-          'x-decorator': 'FormItem',
-          'x-component': 'Selector',
-          'x-decorator-props': {
-            feedbackLayout: 'popover',
-            tooltip: '额外提示',
-          },
-          'x-component-props': {
-            placeholder: '请选择'
-          },
-          'x-validator': [
-            {required: true, message: '必须选择一项'}
-          ]
-        },
-        address: {
-          type: 'string',
-          title: '多选',
-          enum: ItemList,
-          default: ['1', '3'],
-          'x-decorator': 'FormItem',
-          'x-component': 'Selector',
-          'x-component-props': {
-            placeholder: '请选择',
-            multiple: true,
-          },
-        },
-        slider: {
-          type: 'string',
-          title: '滑动器',
-          'x-decorator': 'FormItem',
-          'x-component': 'Slider',
-          'x-component-props': {
-            placeholder: '请选择',
-          },
-        },
-      },
-    }
+      'x-validator': [{ required: true, message: '必须选择一项' }],
+    },
   },
 }
 
 export default () => {
-
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values)
+      content: JSON.stringify(values),
     })
   }
 
   return (
     <FormProvider form={form}>
-      <SchemaField schema={schema}/>
+      <SchemaField schema={schema} />
       <FormButtonGroup>
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>

@@ -1,8 +1,15 @@
+/*
+ * @Author: YEYI 361936738@qq.com
+ * @Date: 2024-05-21 18:59:51
+ * @LastEditors: YEYI 361936738@qq.com
+ * @LastEditTime: 2024-05-21 20:01:20
+ * @FilePath: /antd-mobile/packages/components/docs/components/Checkbox/demos/markup-schema.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React from 'react'
 // @ts-ignore
 import {
   FormLayout,
-  Input,
   FormItem,
   Checkbox,
   FormButtonGroup,
@@ -14,7 +21,6 @@ import { FormProvider, createSchemaField } from '@formily/react'
 
 const SchemaField = createSchemaField({
   components: {
-    Input,
     FormItem,
     Checkbox,
   },
@@ -51,41 +57,15 @@ export default () => {
 
   return (
     <FormProvider form={form}>
-      <FormLayout layout="vertical">
-        <SchemaField>
-          <SchemaField.String
-            name="items"
-            title="基本用法"
-            x-decorator="FormItem"
-            x-component="Checkbox"
-            x-component-props={{
-              block: true,
-            }}
-            enum={ItemList}
-          />
-          <SchemaField.Array
-            name="items-multiple"
-            title="选项组"
-            x-decorator="FormItem"
-            x-component="Checkbox.Group"
-            x-component-props={{
-              layout: 'horizontal',
-            }}
-            default={['1', '4']}
-            enum={ItemList}
-          />
-          <SchemaField.Array
-            name="items-blocks"
-            title="块级布局"
-            x-decorator="FormItem"
-            x-component="Checkbox.Group"
-            x-component-props={{
-              layoutBlock: true,
-            }}
-            enum={ItemList}
-          />
-        </SchemaField>
-      </FormLayout>
+      <SchemaField>
+        <SchemaField.String
+          name="items"
+          title="复选框"
+          x-decorator="FormItem"
+          x-component="Checkbox.Group"
+          enum={ItemList}
+        />
+      </SchemaField>
       <FormButtonGroup>
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
