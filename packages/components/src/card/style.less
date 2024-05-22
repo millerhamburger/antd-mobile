@@ -1,0 +1,40 @@
+@import '../global/global';
+@card-cls: ~'@{ant-prefix}-formily-card';
+
+.@{card-cls} {
+  margin: 12px;
+  padding: 0 !important;
+
+  .@{ant-prefix}-card-header {
+    height: 48px;
+    line-height: 48px;
+    margin: 0 10px;
+    padding: 0;
+
+    &-title {
+      line-height: 48px;
+      font-family: PingFangSC, PingFang SC;
+      font-weight: 500;
+      font-size: 16px;
+      color: #344767;
+      font-style: normal;
+      text-indent: 2px;
+    }
+  }
+
+  .@{ant-prefix}-card-header:not(:last-child) {
+    border-bottom: solid 1px var(--adm-color-border);
+  }
+
+  &-title {
+    &-tag {
+      position: absolute;
+      left: -10px;
+      top: 12px;
+      width: 2px;
+      height: 24px;
+      background: #17c1e8;
+      border-radius: 1px;
+    }
+  }
+}
