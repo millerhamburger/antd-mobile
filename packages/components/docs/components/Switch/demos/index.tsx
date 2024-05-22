@@ -6,13 +6,9 @@ import { List } from 'antd-mobile'
 function Index(props) {
   return (
     <>
-      <List header="Markup Schema 模式">
-        <MarkupSchema />
-      </List>
+      <MarkupSchema />
 
-      <List header="JSON Schema 模式">
-        <JsonSchema />
-      </List>
+      <JsonSchema />
     </>
   )
 }
