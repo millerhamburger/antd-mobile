@@ -65,8 +65,8 @@ export const BaseRadio: React.FC<IRadioProps> = ({
 
   return (
     <Space
-      direction={props.layout ?? layout.layout ?? 'vertical'}
-      block={props.layoutBlock}
+      // direction={props.layout ?? layout.layout ?? 'vertical'}
+      // block={props.layoutBlock}
       wrap={true}
     >
       {dataSource.map((item) => {
