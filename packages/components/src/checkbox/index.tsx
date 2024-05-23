@@ -6,7 +6,7 @@ import {
   CheckboxProps,
   CheckboxGroupProps,
 } from 'antd-mobile/es/components/checkbox'
-import { useFormLayout } from '../form-layout'
+// import { useFormLayout } from '../form-layout'
 
 export interface ICheckboxOption {
   label: string
@@ -41,7 +41,7 @@ export const BaseCheckbox: React.FC<ICheckboxProps> = ({
   options,
   ...props
 }) => {
-  const layout = useFormLayout()
+  // const layout = useFormLayout()
   const field = useField<DataField>()
 
   const dataSource = field?.dataSource?.length
@@ -68,8 +68,8 @@ export const BaseCheckbox: React.FC<ICheckboxProps> = ({
 
   return (
     <Space
-      direction={props.layout ?? layout.layout ?? 'vertical'}
-      block={props.layoutBlock}
+      // direction={props.layout ?? layout.layout ?? 'vertical'}
+      // block={props.layoutBlock}
       wrap={true}
     >
       {dataSource.map((item) => {
