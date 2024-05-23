@@ -1,5 +1,5 @@
-# Stepper
+# NumberPicker
 
-> 步进器
+> NumberPicker
 
 <code src="./demos/index.tsx" />
