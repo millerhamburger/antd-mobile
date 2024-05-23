@@ -121,6 +121,9 @@ export const BaseDatePicker: React.FC<IDatePickerProps> = (props) => {
           setVisible(true)
         }}
         clearable={clearable}
+        onClear={() => {
+          onChange(null)
+        }}
         style={style}
       />
       {renderDatePicker()}
