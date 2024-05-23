@@ -2,7 +2,7 @@
  * @Author: YEYI 361936738@qq.com
  * @Date: 2024-05-21 17:18:09
  * @LastEditors: YEYI 361936738@qq.com
- * @LastEditTime: 2024-05-22 15:32:47
+ * @LastEditTime: 2024-05-23 16:16:48
  * @FilePath: /antd-mobile/packages/components/src/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,7 +17,7 @@ export * from './input'
 export * from './selector'
 export * from './checkbox'
 export * from './check-list'
-export * from './NumberPicker'
+export * from './numberPicker'
 export * from './submit'
 export * from './reset'
 export * from './space'
@@ -29,3 +29,4 @@ export * from './cascade-picker'
 export * from './radio'
 export * from './card'
 export * from './form'
+export * from './rate'
