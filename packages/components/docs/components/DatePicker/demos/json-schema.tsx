@@ -1,12 +1,21 @@
+/*
+ * @Author: YEYI 361936738@qq.com
+ * @Date: 2024-05-21 18:59:51
+ * @LastEditors: YEYI 361936738@qq.com
+ * @LastEditTime: 2024-05-23 20:24:34
+ * @FilePath: /antd-mobile/packages/components/docs/components/DatePicker/demos/json-schema.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React from 'react'
-// @ts-ignore
 import {
   Input,
   DatePicker,
-  FormLayout,
   FormItem,
   FormButtonGroup,
   Submit,
+  Card,
+  FormGrid,
+  // @ts-ignore
 } from '@formily/antd-mobile'
 import { Dialog } from 'antd-mobile'
 import { createForm } from '@formily/core'
@@ -17,6 +26,8 @@ const SchemaField = createSchemaField({
     Input,
     FormItem,
     DatePicker,
+    Card,
+    FormGrid,
   },
 })
 
@@ -24,48 +35,126 @@ const form = createForm()
 const schema = {
   type: 'object',
   properties: {
-    date: {
-      title: '普通日期',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      type: 'string',
-    },
-    week: {
-      title: '周选择',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
+    mkzd8vfs1k02: {
+      'x-component': 'Card',
+      'x-designable-id': 'mkzd8vfs1k02',
       'x-component-props': {
-        picker: 'week',
+        title: 'JSON Schema 模式',
       },
-      type: 'string',
-    },
-    month: {
-      title: '月选择',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        picker: 'month',
+      type: 'void',
+      'x-index': 0,
+      properties: {
+        r7k6gfi7pgda: {
+          'x-component': 'FormGrid',
+          'x-designable-id': 'r7k6gfi7pgda',
+          'x-component-props': {
+            columnGap: 24,
+          },
+          type: 'void',
+          'x-index': 0,
+          properties: {
+            stf0g7ijhled: {
+              'x-component': 'FormGrid.GridColumn',
+              'x-designable-id': 'stf0g7ijhled',
+              'x-component-props': {},
+              type: 'void',
+              'x-index': 0,
+              properties: {
+                year: {
+                  'x-component': 'DatePicker',
+                  'x-decorator': 'FormItem',
+                  'x-designable-id': 'oztqxktp4lqx',
+                  'x-decorator-props': {},
+                  'x-validator': [],
+                  'x-component-props': {
+                    showNow: true,
+                    showTime: true,
+                    picker: 'year',
+                    placeholder: '请选择年',
+                    clearable: true,
+                  },
+                  type: 'string',
+                  title: '年',
+                  'x-index': 0,
+                  name: 'year',
+                },
+              },
+            },
+            pm0z5ua75x6p: {
+              'x-component': 'FormGrid.GridColumn',
+              'x-designable-id': 'pm0z5ua75x6p',
+              type: 'void',
+              'x-index': 1,
+              properties: {
+                month: {
+                  'x-component': 'DatePicker',
+                  'x-decorator': 'FormItem',
+                  'x-designable-id': 'qja7jqdi8gq4',
+                  'x-decorator-props': {},
+                  'x-validator': [],
+                  'x-component-props': {
+                    showNow: true,
+                    showTime: true,
+                    picker: 'month',
+                    placeholder: '请选择月',
+                  },
+                  type: 'string',
+                  title: '月',
+                  'x-index': 0,
+                  name: 'month',
+                },
+              },
+            },
+            ra4z5gbushos: {
+              'x-component': 'FormGrid.GridColumn',
+              'x-designable-id': 'ra4z5gbushos',
+              type: 'void',
+              'x-index': 2,
+              properties: {
+                date: {
+                  'x-component': 'DatePicker',
+                  'x-decorator': 'FormItem',
+                  'x-designable-id': 'jbcqj23so6d7',
+                  'x-decorator-props': {},
+                  'x-validator': [],
+                  'x-component-props': {
+                    showNow: true,
+                    showTime: false,
+                    placeholder: '请选择日',
+                  },
+                  type: 'string',
+                  title: '日',
+                  'x-index': 0,
+                  name: 'date',
+                },
+              },
+            },
+            b3jim3jv6gjx: {
+              'x-component': 'FormGrid.GridColumn',
+              'x-designable-id': 'b3jim3jv6gjx',
+              type: 'void',
+              'x-index': 3,
+              properties: {
+                datetime: {
+                  'x-component': 'DatePicker',
+                  'x-decorator': 'FormItem',
+                  'x-designable-id': 't5airqach747',
+                  'x-decorator-props': {},
+                  'x-validator': [],
+                  'x-component-props': {
+                    showTime: true,
+                    placeholder: '请选择时间',
+                  },
+                  type: 'string',
+                  title: '时间',
+                  'x-index': 0,
+                  name: 'datetime',
+                },
+              },
+            },
+          },
+        },
       },
-      type: 'string',
-    },
-    quarter: {
-      title: '财年选择',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        picker: 'quarter',
-        clearable: true,
-      },
-      type: 'string',
-    },
-    year: {
-      title: '年选择',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        picker: 'year',
-      },
-      type: 'string',
     },
   },
 }
@@ -79,9 +168,7 @@ export default () => {
 
   return (
     <FormProvider form={form}>
-      <FormLayout>
-        <SchemaField schema={schema} />
-      </FormLayout>
+      <SchemaField schema={schema} />
       <FormButtonGroup>
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>

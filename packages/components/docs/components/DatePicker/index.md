@@ -1,3 +1,12 @@
+<!--
+ * @Author: YEYI 361936738@qq.com
+ * @Date: 2024-05-21 18:59:51
+ * @LastEditors: YEYI 361936738@qq.com
+ * @LastEditTime: 2024-05-23 19:31:45
+ * @FilePath: /antd-mobile/packages/components/docs/components/DatePicker/index.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+
 # DatePicker
 
 > DatePicker
@@ -5,11 +14,5 @@
 <code src="./demos/index.tsx" />
 
 ## API
-
-| 属性名    | 类型                                                                             | 描述                                                                                       | 默认值       |
-| --------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------ |
-| clearable | `boolean`                                                                        | 是否启用清除图标，点击清除图标后会清空值                                                   | false        |
-| picker    | `'date' \| 'week' \| 'month' \| 'quarter' \| 'year'`                             | 设置选择器类型，同时设置`precision`，则会合并                                              | -            |
-| format    | `string \| (value: moment) => string \| (string \| (value: moment) => string)[]` | 设置日期格式，为数组时支持多格式匹配，展示以第一个为准。配置参考 moment.js，支持自定义格式 | `YYYY-MM-DD` |
 
 其它参数参考：https://mobile.ant.design/components/picker#datepicker

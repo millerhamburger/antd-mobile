@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import cls from 'classnames'
 import union from 'lodash/union'
 import moment from 'moment'
@@ -11,124 +11,118 @@ import QuarterDatePicker from './quarter-picker'
 import { VirtualInputRef } from 'antd-mobile/es/components/virtual-input'
 import { formatMomentValue, momentable, usePrefixCls } from '../__builtins__'
 import { PreviewText } from '../preview-text'
+type PickerMode = 'date' | 'year' | 'month'
 
-type DateValue = string | Date | moment.Moment | moment.Moment[]
-
-type PickerMode = 'date' | 'week' | 'month' | 'quarter' | 'year'
-
-export type IDatePickerProps<PickerProps> = Exclude<
-  PickerProps,
-  'value' | 'onChange'
-> & {
+export type IDatePickerProps = {
   placeholder?: string
   clearable?: boolean
   picker?: PickerMode
-  format?:
-    | string
-    | ((value: moment.Moment) => string)
-    | (string | ((value: moment.Moment) => string)[])
   showTime?: boolean
-  value: DateValue
-  onChange: (value: DateValue) => void
+  showNoe?: boolean
+  value: string | null
+  onChange: (value: string | null) => void
+  style?: React.CSSProperties
 }
 
 export type RangePickerProps = {}
 
-type ComposedDatePicker = React.FC<AntdDatePickerProps> & {
+type ComposedDatePicker = React.FC<IDatePickerProps> & {
   RangePicker?: React.FC<RangePickerProps>
 }
 
-const mapDateFormat = function <T>() {
-  const getDefaultFormat = (props: IDatePickerProps<T>) => {
-    const picker = props.picker
-    if (picker === 'month') {
-      return 'YYYY-MM'
-    } else if (picker === 'quarter') {
-      return 'YYYY-\\QQ'
-    } else if (picker === 'year') {
-      return 'YYYY'
-    } else if (picker === 'week') {
-      return 'gggg-wo'
-    }
-    return props['showTime'] ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
-  }
-  return (props: any): IDatePickerProps<T> => {
-    const format = props['format'] || getDefaultFormat(props)
-    const onChange = props.onChange
-    return {
-      ...props,
-      format: format,
-      value: momentable(props.value, format === 'gggg-wo' ? 'gggg-ww' : format),
-      onChange: (value: DateValue) => {
-        if (onChange) {
-          onChange(formatMomentValue(value, format))
-        }
-      },
-    } as IDatePickerProps<T>
-  }
-}
+// const mapDateFormat = function <T>() {
+//   const getDefaultFormat = (props: IDatePickerProps<T>) => {
+//     const picker = props.picker
+//     if (picker === 'month') {
+//       return 'YYYY-MM'
+//     } else if (picker === 'year') {
+//       return 'YYYY'
+//     }
+//     return props['showTime'] ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
+//   }
+//   return (props: any): IDatePickerProps<T> => {
+//     const format = props['format'] || getDefaultFormat(props)
+//     const onChange = props.onChange
+//     return {
+//       ...props,
+//       format: format,
+//       value: momentable(props.value, format === 'gggg-wo' ? 'gggg-ww' : format),
+//       onChange: (value: Date) => {
+//         if (onChange) {
+//           onChange(formatMomentValue(value, format))
+//         }
+//       },
+//     } as IDatePickerProps<T>
+//   }
+// }
 
-export const BaseDatePicker: React.FC<IDatePickerProps<AntdDatePickerProps>> = (
-  props
-) => {
+const map = new Map([
+  ['year', 'YYYY'],
+  ['month', 'YYYY-MM'],
+  ['date', 'YYYY-MM-DD'],
+])
+
+// 日期选择器
+export const BaseDatePicker: React.FC<IDatePickerProps> = (props) => {
   const prefix = usePrefixCls('formily-date-picker')
   const {
     onChange,
     placeholder,
     value,
-    format,
     clearable,
     style,
-    picker,
-    precision: _precision,
-    ...dateProps
-  } = mapDateFormat<AntdDatePickerProps>()(props)
+    picker = 'date',
+    showTime,
+  } = props
   const inputRef = useRef<VirtualInputRef>()
+
   const [visible, setVisible] = useState(false)
 
-  const onDateChange = (value: Date) => {
-    onChange?.(value)
-  }
-
-  const val = formatMomentValue(value, format, '')
-
   const renderDatePicker = () => {
-    const precision = union([picker], [_precision])?.[0]
+    const pickerValue = value ? new Date(value) : null
+
+    const precision: AntdDatePickerProps['precision'] = useMemo(() => {
+      if (picker === 'date' && showTime) return 'second'
+      if (picker === 'date') return 'day'
+      return picker
+    }, [picker])
+
+    const onConfirm = (value: Date) => {
+      onChange(value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : null)
+    }
 
     const props = {
-      ...dateProps,
       precision,
       visible,
-      value: (value as moment.Moment)?.toDate(),
-      getContainer: null,
+      value: pickerValue,
       onClose: () => {
         setVisible(false)
         inputRef.current.focus()
       },
-      onConfirm: onDateChange,
+      onConfirm: onConfirm,
     }
-    const Picker =
-      precision?.indexOf('quarter') > -1 ? QuarterDatePicker : AntdDatePicker
 
-    return <Picker {...props} />
+    return <AntdDatePicker {...props} />
   }
+
+  const inputValue = useMemo(() => {
+    return value
+      ? moment(value).format(map.get(picker) || 'YYYY-MM-DD HH:mm:ss')
+      : ''
+  }, [value])
 
   return (
     <div className={cls(prefix)}>
       <VirtualInput
         placeholder={placeholder}
-        value={Array.isArray(val) ? val.join('~') : val}
+        value={inputValue}
         ref={inputRef}
-        style={{ '--caret-width': '1px', '--caret-color': '#666666', ...style }}
         onClick={() => {
           setVisible(true)
         }}
+        clearable={clearable}
+        style={style}
       />
-      {clearable && value && (
-        <div className={`${prefix}-clear`} onClick={() => onChange?.('')}>
-          <CloseCircleFill />
-        </div>
-      )}
       {renderDatePicker()}
     </div>
   )
@@ -139,12 +133,10 @@ export const DatePicker: ComposedDatePicker = connect(
   mapReadPretty(PreviewText.DatePicker)
 )
 
-/*
- DatePicker.RangePicker = connect(
- AntdDatePicker.RangePicker,
- mapProps(mapDateFormat()),
- mapReadPretty(PreviewText.DateRangePicker)
- )
- */
+//  DatePicker.RangePicker = connect(
+//   AntdDatePicker.RangePicker,
+//   mapProps(mapDateFormat()),
+//   mapReadPretty(PreviewText.DateRangePicker)
+//  )
 
 export default DatePicker

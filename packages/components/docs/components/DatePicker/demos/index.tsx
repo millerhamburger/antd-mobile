@@ -10,9 +10,7 @@ function Index(props) {
         <MarkupSchema />
       </List>
 
-      <List header="JSON Schema 模式">
-        <JsonSchema />
-      </List>
+      <JsonSchema />
     </>
   )
 }
