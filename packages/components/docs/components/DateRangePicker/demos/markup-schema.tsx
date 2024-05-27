@@ -3,11 +3,11 @@
  * @Date: 2024-05-21 18:59:51
  * @LastEditors: YEYI 361936738@qq.com
  * @LastEditTime: 2024-05-24 09:57:37
- * @FilePath: /antd-mobile/packages/components/docs/components/DatePicker/demos/markup-schema.tsx
+ * @FilePath: /antd-mobile/packages/components/docs/components/DateRangePicker/demos/markup-schema.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import {
-  DatePicker,
+  DateRangePicker,
   FormButtonGroup,
   FormItem,
   Submit,
@@ -23,7 +23,7 @@ import React from 'react'
 const SchemaField = createSchemaField({
   components: {
     FormItem,
-    DatePicker,
+    DateRangePicker,
     Card,
     FormGrid,
   },
@@ -64,7 +64,7 @@ export default () => {
               <SchemaField.String
                 title="年"
                 x-decorator="FormItem"
-                x-component="DatePicker"
+                x-component="DateRangePicker"
                 x-validator={[]}
                 x-component-props={{
                   picker: 'year',
@@ -84,7 +84,7 @@ export default () => {
               <SchemaField.String
                 title="月"
                 x-decorator="FormItem"
-                x-component="DatePicker"
+                x-component="DateRangePicker"
                 x-validator={[]}
                 x-component-props={{
                   picker: 'month',
@@ -104,7 +104,7 @@ export default () => {
               <SchemaField.String
                 title="日"
                 x-decorator="FormItem"
-                x-component="DatePicker"
+                x-component="DateRangePicker"
                 x-validator={[]}
                 x-component-props={{ showNow: true, showTime: false }}
                 name="date"
@@ -120,7 +120,7 @@ export default () => {
               <SchemaField.String
                 title="时间"
                 x-decorator="FormItem"
-                x-component="DatePicker"
+                x-component="DateRangePicker"
                 x-validator={[]}
                 x-component-props={{ showNow: true, showTime: true }}
                 name="datetime"

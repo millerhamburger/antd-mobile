@@ -3,6 +3,8 @@
 
 @date-picker-cls: ~'@{ant-prefix}-formily-date-picker';
 
+@date-range-picker-cls: ~'@{ant-prefix}-formily-date-range-picker';
+
 .@{date-picker-cls} {
   display: flex;
   justify-content: space-between;
@@ -26,5 +28,13 @@
       display: block;
       font-size: 14px;
     }
+  }
+}
+
+.@{date-range-picker-cls} {
+  display: flex;
+  align-items: center;
+  &-content {
+    flex: 1;
   }
 }
