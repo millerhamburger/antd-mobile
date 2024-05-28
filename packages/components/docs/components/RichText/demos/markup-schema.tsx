@@ -2,8 +2,8 @@
  * @Author: YEYI 361936738@qq.com
  * @Date: 2024-05-21 18:59:51
  * @LastEditors: YEYI 361936738@qq.com
- * @LastEditTime: 2024-05-28 14:45:46
- * @FilePath: /antd-mobile/packages/components/docs/components/Rate/demos/markup-schema.tsx
+ * @LastEditTime: 2024-05-23 16:19:23
+ * @FilePath: /antd-mobile/packages/components/docs/components/RichText/demos/markup-schema.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React from 'react'
@@ -14,7 +14,7 @@ import {
   Card,
   FormGrid,
   Form,
-  Rate,
+  RichText,
   // @ts-ignore
 } from '@formily/antd-mobile'
 import { createForm } from '@formily/core'
@@ -26,7 +26,7 @@ const SchemaField = createSchemaField({
     FormItem,
     Card,
     FormGrid,
-    Rate,
+    RichText,
   },
 })
 
@@ -65,7 +65,7 @@ export default () => {
               <SchemaField.Number
                 title="评分器"
                 x-decorator="FormItem"
-                x-component="Rate"
+                x-component="RichText"
                 x-component-props={{
                   allowHalf: true,
                   count: 5,
